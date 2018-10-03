@@ -24,7 +24,6 @@
 8. Setup cron like this: */1 * * * * node /PATH_FOR_GHSPEAKER/ghspeaker.js
 9. Optionally, you can send one-time message to the Spread Sheet using IFTTT or any other integration services.
 
-<br>
 (日本語)
 1. Google Developer ConsoleでGoogle Spread SheetのAPI実行用のサービス・アカウントを作成し、クリデンシャル用のjsonファイルを取得、Linux環境へ保存しておきます
 2. Google Spread Sheetで新しいスプレッド・シートを作成し、1行目に見出しをつけます<br>
@@ -38,7 +37,7 @@
 8. 次のようにcronを設定します: */1 * * * * node /PATH_FOR_GHSPEAKER/ghspeaker.js
 9. オプションとして、IFTTTなどを使うことでSpread Sheetにアドホックなメッセージを送って喋らせることも可能です
 
-# How to setup Spread Sheet (スプレッド・シートの見出しと設定方法)
+# How to setup Spread Sheet (シートの見出しと設定方法)
 
 (English)<br>
 Column A: [day] Set "Day" when Google Home runs<br>
