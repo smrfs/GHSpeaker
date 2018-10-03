@@ -9,7 +9,7 @@ Let your Google Home speak for routine and one-time message
 
 # How to Use (使い方)
 
-(English)
+(English)<br>
 Create new Google Spread Sheet. And setup column names in first row. After second row, you can configure when, what message you want Google Home to speak.
 *IMPORTANT: If you dismiss the column names like any typo, this program may not work. Please set the names carefully.
 
