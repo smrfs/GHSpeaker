@@ -13,11 +13,11 @@
 # How to Use (使い方)
 
 (English)<br>
-Create new Google Spread Sheet. And setup column names in first row. After second row, you can configure when, what message you want Google Home to speak.
+Create new Google Spread Sheet. And setup column names in first row. After second row, you can configure when, what message you want Google Home to speak.<br>
 *IMPORTANT: If you dismiss the column names like any typo, this program may not work. Please set the names carefully.
 
 (日本語)<br>
-Google Spread Sheetで新しいスプレッド・シートを作成し、1行目に見出しをつけます。あとは各見出しに合った値を設定しておくことで、 設定した曜日、時刻にメッセージをGoogle Homeが読み上げます。
+Google Spread Sheetで新しいスプレッド・シートを作成し、1行目に見出しをつけます。あとは各見出しに合った値を設定しておくことで、 設定した曜日、時刻にメッセージをGoogle Homeが読み上げます。<br>
 *注意: この見出しの名前を間違えると 正しく動作しないため注意が必要です
 
 # How to setup Spread Sheet (スプレッド・シートの見出しと設定方法)
