@@ -41,18 +41,22 @@
 
 (English)<br>
 Column A: [day] Set "Day" when Google Home runs<br>
-- Day: Mon, Tue, Wed, Thu, Fri, Sat, Sun<br>
-- Week/Holiday: Week (Mon-Fri), Holi (Sat & Sun)<br>
-- One-Time: Tmp<br>
+
+- Day: Mon, Tue, Wed, Thu, Fri, Sat, Sun
+- Week/Holiday: Week (Mon-Fri), Holi (Sat & Sun)>
+- One-Time: Tmp
+
 Column B: [h] Set "Hour" when Google Home runs<br>
 Column C: [m] Set "Minutes" when Google Home runs<br>
 Column D: [message] Set "Message" which Google Home speaks<br>
 
 (日本語)<br>
 A列: [day] 起動の "曜日" または "平日/休日" を設定<br>
-- 曜日: Mon, Tue, Wed, Thu, Fri, Sat, Sun<br>
-- 平日／休日：Week(月～金), Holi(土日)<br>
+
+- 曜日: Mon, Tue, Wed, Thu, Fri, Sat, Sun
+- 平日／休日：Week(月～金), Holi(土日)
 - アドホック: Tmp
+
 B列: [h] 起動時刻の "時" を設定<br>
 C列: [m] 起動時刻の "分" を設定<br>
 D列: [message] Google Homeで話すメッセージを設定<br>
