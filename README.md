@@ -12,7 +12,7 @@
 
 # How to Use (使い方)
 
-(English)<br>
+(English)
 1. Create your service account in Google Devloper Console to call Google Spread Sheet API, and save the credential json file in your Linux PC. Detail info is here: https://www.npmjs.com/package/google-spreadsheet#service-account-recommended-method
 2. Create new Google Spread Sheet, and setup column names in first row. After second row, you can configure when, what message you want Google Home to speak.<br>
 *IMPORTANT: If you dismiss the column names like any typo, this program may not work. Please set the names carefully.
@@ -24,7 +24,8 @@
 8. Setup cron like this: */1 * * * * node /PATH_FOR_GHSPEAKER/ghspeaker.js
 9. Optionally, you can send one-time message to the Spread Sheet using IFTTT or any other integration services.
 
-(日本語)<br>
+<br>
+(日本語)
 1. Google Developer ConsoleでGoogle Spread SheetのAPI実行用のサービス・アカウントを作成し、クリデンシャル用のjsonファイルを取得、Linux環境へ保存しておきます
 2. Google Spread Sheetで新しいスプレッド・シートを作成し、1行目に見出しをつけます<br>
 あとは各見出しに合った値を設定しておくことで、 設定した曜日、時刻にメッセージをGoogle Homeが読み上げます<br>
@@ -43,7 +44,7 @@
 Column A: [day] Set "Day" when Google Home runs<br>
 
 - Day: Mon, Tue, Wed, Thu, Fri, Sat, Sun
-- Week/Holiday: Week (Mon-Fri), Holi (Sat & Sun)>
+- Week/Holiday: Week (Mon-Fri), Holi (Sat & Sun)
 - One-Time: Tmp
 
 Column B: [h] Set "Hour" when Google Home runs<br>
