@@ -28,7 +28,7 @@ Let your Google Home speak for routine and one-time message<br>
 1. Google Developer ConsoleでGoogle Spread SheetのAPI実行用のサービス・アカウントを作成し、クリデンシャル用のjsonファイルを取得、Linux環境へ保存しておきます
 2. Google Spread Sheetで新しいスプレッド・シートを作成し、1行目に見出しをつけます<br>
 あとは各見出しに合った値を設定しておくことで、 設定した曜日、時刻にメッセージをGoogle Homeが読み上げます<br>
-*注意: この見出しの名前を間違えると 正しく動作しないため注意が必要です
+*注意: この見出しの名前を間違えると 正しく動作しないため注意が必要です<br>
 *サンプル: https://github.com/smrfs/GHSpeaker/blob/master/sample.csv
 3. 作成したSheetを作成したサービス・アカウントと共有します
 4. ブラウザのURLからSpread SheetのIDを控えておきます
