@@ -1,0 +1,6 @@
+day,h,m,message
+All,8,0,Test Every Morning Message
+Week,7,30,Test Every Weekday Message
+Holi,10,0,Test Every Holiday Message
+Mon,7,50,Test Every Monday Message
+Tmp,,,Test One-Time Message
