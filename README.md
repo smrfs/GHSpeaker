@@ -1,6 +1,6 @@
 # GHSpeaker
 
-(English) Let your Google Home speak for routine and one-time message<br>
+Let your Google Home speak for routine and one-time message<br>
 (日本語) Google Homeに定期的に、またはアドホックにメッセージを喋って貰いましょう
 
 # Requirements (必要なもの)
@@ -12,10 +12,10 @@
 
 # How to Use (使い方)
 
-(English)
 1. Create your service account in Google Devloper Console to call Google Spread Sheet API, and save the credential json file in your Linux PC. Detail info is here: https://www.npmjs.com/package/google-spreadsheet#service-account-recommended-method
 2. Create new Google Spread Sheet, and setup column names in first row. After second row, you can configure when, what message you want Google Home to speak.<br>
-*IMPORTANT: If you dismiss the column names like any typo, this program may not work. Please set the names carefully.
+*IMPORTANT: If you dismiss the column names like any typo, this program may not work. Please set the names carefully.<br>
+*SAMPLE: https://github.com/smrfs/GHSpeaker/blob/master/sample.csv
 3. Share the sheet with your service account created first step.
 4. Copy the Spread Sheet ID from URL in your browser.
 5. Setup Node.js Run-time in your Linux PC.
@@ -29,6 +29,7 @@
 2. Google Spread Sheetで新しいスプレッド・シートを作成し、1行目に見出しをつけます<br>
 あとは各見出しに合った値を設定しておくことで、 設定した曜日、時刻にメッセージをGoogle Homeが読み上げます<br>
 *注意: この見出しの名前を間違えると 正しく動作しないため注意が必要です
+*サンプル: https://github.com/smrfs/GHSpeaker/blob/master/sample.csv
 3. 作成したSheetを作成したサービス・アカウントと共有します
 4. ブラウザのURLからSpread SheetのIDを控えておきます
 5. Linux環境でNode.jsの実行環境を整えます
@@ -39,7 +40,6 @@
 
 # How to setup Spread Sheet (シートの見出しと設定方法)
 
-(English)<br>
 Column A: [day] Set "Day" when Google Home runs<br>
 
 - Day: Mon, Tue, Wed, Thu, Fri, Sat, Sun
