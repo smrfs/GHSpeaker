@@ -1,6 +1,7 @@
 {
     "credential_path": "./xxxxxx-xxxxxx-xxxxxxxxxxxx.json",
     "sheet_id": "XXXXXXXXXX",
+    "language": "en",
     "device_name": "Google Home",
     "ip_address": "192.168.1.101"
 }

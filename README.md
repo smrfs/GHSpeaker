@@ -12,7 +12,7 @@ Let your Google Home speak for routine and one-time message<br>
 
 # How to Use (使い方)
 
-1. Create your service account in Google Devloper Console to call Google Spread Sheet API, and save the credential json file in your Linux PC. Detail info is here: https://www.npmjs.com/package/google-spreadsheet#service-account-recommended-method
+1. Create your service account in Google Developer Console to call Google Spread Sheet API, and save the credential json file in your Linux PC. Detail info is here: https://www.npmjs.com/package/google-spreadsheet#service-account-recommended-method
 2. Create new Google Spread Sheet, and setup column names in first row. After second row, you can configure when, what message you want Google Home to speak.<br>
 *IMPORTANT: If you dismiss the column names like any typo, this program may not work. Please set the names carefully.<br>
 *SAMPLE: https://github.com/smrfs/GHSpeaker/blob/master/sample.csv

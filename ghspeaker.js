@@ -46,9 +46,9 @@ async.waterfall([
   // Nofity Google Home
   function(message, callback) {
     if (message !== null) {
-      googlehome.device(config.device_name, 'ja'); 
+      googlehome.device(config.device_name, config.language); 
       googlehome.ip(config.ip_address);
-      googlehome.accent('ja');
+      googlehome.accent(config.language);
       googlehome.notify(message, function(res) {
         console.log(res);
       });
