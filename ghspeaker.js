@@ -1,61 +1,76 @@
-'use restrict'
+const { GoogleSpreadsheet } = require('google-spreadsheet');
+const googleTTS = require('google-tts-api');
+const Client = require('castv2-client').Client;
+const DefaultMediaReceiver = require('castv2-client').DefaultMediaReceiver;
 
-const async = require('async');
-const googlehome = require('google-home-notifier');
-const spreadsheet = require('google-spreadsheet');
 const config = require("./config.json");
 const authcode = require(config.credential_path);
+
 
 // Map for Day and Week-day from Data.getDay method
 const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const wkday = ['Holi', 'Week', 'Week', 'Week', 'Week', 'Week', 'Holi'];
+// Speech Rate
+const speed = 1;
 
+// Fetch Message from Google Spread Sheet
+async function main() {
+    const spsheet = new GoogleSpreadsheet(config.sheet_id);
+    await spsheet.useServiceAccountAuth(authcode);
+    await spsheet.loadInfo();
+    const sheet = await spsheet.sheetsByIndex[0];
+    const now = new Date();
+    const rows = await sheet.getRows();
+    let idx = rows.findIndex(row => ((row.day == day[now.getDay()] || row.day == wkday[now.getDay()] || row.day == 'All') && row.h == now.getHours() && row.m == now.getMinutes()) || row.day == 'Tmp');
 
-async.waterfall([
-
-  // Get Google Spread Sheet
-  function(callback) {
-    var spsheet = new spreadsheet(config.sheet_id);
-    spsheet.useServiceAccountAuth(authcode, function(err) {
-        spsheet.getInfo(function(err, info) {
-            callback(err, info.worksheets[0]);
-        });
-    });
-  },
-
-  // Get Message Text
-  function(sheet, callback) {
-      // Query Sheet Config
-      var now = new Date();
-      sheet.getRows({
-          query: '((day=' + day[now.getDay()] + ' or day=' + wkday[now.getDay()] + ' or day=All) and h=' + now.getHours() + ' and m=' + now.getMinutes() + ') or day=Tmp',
-          limit: 1
-      }, function(err, rows) {
-          if (rows.length >= 1 && rows[0].day=='Tmp') {
-              // Delete if the Message is for One-Time
-              callback(err, rows[0].message);
-              rows[0].del();
-          } else if (rows.length >= 1 && rows[0].day!='Tmp'){
-              callback(err, rows[0].message);
-	   } else {
-              callback(err, null);
-          }
-      });
-  },
-
-  // Nofity Google Home
-  function(message, callback) {
-    if (message !== null) {
-      googlehome.device(config.device_name, config.language); 
-      googlehome.ip(config.ip_address);
-      googlehome.accent(config.language);
-      googlehome.notify(message, function(res) {
-        console.log(res);
-      });
+    if (idx >= 0 && rows[idx].day=='Tmp') {
+        // Delete if the Message is for One-Time
+        notify(config.ip_address, config.language, rows[idx].message);
+        rows[idx].day = '';
+        rows[idx].h = '';
+        rows[idx].m = '';
+        rows[idx].message = '';
+        rows[idx].note = '';
+        await rows[idx].save();
+    } else if (idx >= 0 && rows[idx].day!='Tmp'){
+        notify(config.ip_address, config.language, rows[idx].message);
     }
-  },
-  
-  function(err) {
-    if (err) console.log(err);
-  }
-]);
+}
+
+function notify(host, lang, text) {
+    googleTTS(text, lang, speed).then(function (content) {
+        if (content == '') return;
+
+        const client = new Client();
+        client.connect(host, function () {
+            client.launch(DefaultMediaReceiver, function (err, player) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+
+                player.on('status', function (status) {
+                    console.log(`status broadcast playerState=${status.playerState}`);
+                });
+
+                const media = {
+                    contentId: content,
+                    contentType: 'audio/mp3',
+                    streamType: 'BUFFERED'
+                };
+                player.load(media, { autoplay: true }, function (err, status) {
+                    client.close();
+                });
+            });
+        });
+        client.on('error', function (err) {
+            console.log(`Error: ${err.message}`);
+            client.close();
+        });
+    }).catch(function (err) {
+        console.error(err.stack);
+        return '';
+    });
+};
+
+main();

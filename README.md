@@ -20,7 +20,7 @@ Let your Google Home speak for routine and one-time message<br>
 4. Copy the Spread Sheet ID from URL in your browser.
 5. Setup Node.js Run-time in your Linux PC.
 6. Copy GHSpeaker from github into your Linux and install all node_modules: https://github.com/smrfs/GHSpeaker
-7. Check path of service account credential json, sheet ID, Google Home device name and its ip address, then setup config.json.
+7. Setup config.json: Path of service account credential json, sheet ID, Google Home ip address.
 8. Setup cron like this: */1 * * * * node /PATH_FOR_GHSPEAKER/ghspeaker.js
 9. Optionally, you can send one-time message to the Spread Sheet using IFTTT or any other integration services.
 
@@ -34,7 +34,7 @@ Let your Google Home speak for routine and one-time message<br>
 4. ブラウザのURLからSpread SheetのIDを控えておきます
 5. Linux環境でNode.jsの実行環境を整えます
 6. GithubからGHSpeakerをLinux環境へコピーし、node_modulesをインストールします: https://github.com/smrfs/GHSpeaker
-7. サービス・アカウントのクリデンシャルjsonへのパス、Sheet ID、Google Homeのデバイス名とIPアドレスを確認し、config.jsonを編集します
+7. config.jsonを編集し、次を設定します：サービス・アカウントのクリデンシャルjsonのパス、Sheet ID、言語(jaなど)、Google HomeのIPアドレス
 8. 次のようにcronを設定します: */1 * * * * node /PATH_FOR_GHSPEAKER/ghspeaker.js
 9. オプションとして、IFTTTなどを使うことでSpread Sheetにアドホックなメッセージを送って喋らせることも可能です
 
@@ -64,4 +64,4 @@ E列以降は使用しないため、任意の文字列を設定
 
 # Reference URL (* Japanese Only)
 
-http://blog.o-live.xyz/notify-googlehome-with-raspberrypi/
+https://www.gesource.jp/weblog/?p=8083

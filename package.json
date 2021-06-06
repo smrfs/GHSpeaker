@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "google-home-notifier": "^1.2.0",
-    "google-spreadsheet": "^2.0.5"
-  }
+    "async": "^3.2.0",
+    "castv2-client": "^1.2.0",
+    "google-spreadsheet": "^3.1.15",
+    "google-tts-api": "0.0.6"
+  },
+  "devDependencies": {}
 }
