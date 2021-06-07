@@ -3,15 +3,13 @@ const googleTTS = require('google-tts-api');
 const Client = require('castv2-client').Client;
 const DefaultMediaReceiver = require('castv2-client').DefaultMediaReceiver;
 
+// Get environment specific files
 const config = require("./config.json");
 const authcode = require(config.credential_path);
-
 
 // Map for Day and Week-day from Data.getDay method
 const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const wkday = ['Holi', 'Week', 'Week', 'Week', 'Week', 'Week', 'Holi'];
-// Speech Rate
-const speed = 1;
 
 // Fetch Message from Google Spread Sheet
 async function main() {
@@ -25,51 +23,50 @@ async function main() {
 
     if (idx >= 0 && rows[idx].day=='Tmp') {
         // Delete if the Message is for One-Time
-        notify(config.ip_address, config.language, rows[idx].message);
+        speech(config.ip_address, config.language, rows[idx].message);
         rows[idx].day = '';
         rows[idx].h = '';
         rows[idx].m = '';
         rows[idx].message = '';
         rows[idx].note = '';
-        await rows[idx].save();
+        rows[idx].save();
     } else if (idx >= 0 && rows[idx].day!='Tmp'){
-        notify(config.ip_address, config.language, rows[idx].message);
+        speech(config.ip_address, config.language, rows[idx].message);
     }
 }
 
-function notify(host, lang, text) {
-    googleTTS(text, lang, speed).then(function (content) {
-        if (content == '') return;
+function speech(host, lang, text) {
+    const content = googleTTS.getAudioUrl(text, {
+        lang: lang,
+        slow: false,
+    });
+    if (content == '') return;
 
-        const client = new Client();
-        client.connect(host, function () {
-            client.launch(DefaultMediaReceiver, function (err, player) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
+    const client = new Client();
+    client.connect(host, function () {
+        client.launch(DefaultMediaReceiver, function (err, player) {
+            if (err) {
+                console.log(err);
+                return;
+            }
 
-                player.on('status', function (status) {
-                    console.log(`status broadcast playerState=${status.playerState}`);
-                });
+            player.on('status', function (status) {
+                console.log(`status broadcast playerState=${status.playerState}`);
+            });
 
-                const media = {
-                    contentId: content,
-                    contentType: 'audio/mp3',
-                    streamType: 'BUFFERED'
-                };
-                player.load(media, { autoplay: true }, function (err, status) {
-                    client.close();
-                });
+            const media = {
+                contentId: content,
+                contentType: 'audio/mp3',
+                streamType: 'BUFFERED'
+            };
+            player.load(media, { autoplay: true }, function (err, status) {
+                client.close();
             });
         });
-        client.on('error', function (err) {
-            console.log(`Error: ${err.message}`);
-            client.close();
-        });
-    }).catch(function (err) {
-        console.error(err.stack);
-        return '';
+    });
+    client.on('error', function (err) {
+        console.log(`Error: ${err.message}`);
+        client.close();
     });
 };
 

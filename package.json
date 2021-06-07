@@ -13,7 +13,7 @@
     "async": "^3.2.0",
     "castv2-client": "^1.2.0",
     "google-spreadsheet": "^3.1.15",
-    "google-tts-api": "0.0.6"
+    "google-tts-api": "^2.0.2"
   },
   "devDependencies": {}
 }
