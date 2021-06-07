@@ -19,20 +19,10 @@ async function main() {
     const sheet = await spsheet.sheetsByIndex[0];
     const now = new Date();
     const rows = await sheet.getRows();
-    let idx = rows.findIndex(row => ((row.day == day[now.getDay()] || row.day == wkday[now.getDay()] || row.day == 'All') && row.h == now.getHours() && row.m == now.getMinutes()) || row.day == 'Tmp');
 
-    if (idx >= 0 && rows[idx].day=='Tmp') {
-        // Delete if the Message is for One-Time
-        speech(config.ip_address, config.language, rows[idx].message);
-        rows[idx].day = '';
-        rows[idx].h = '';
-        rows[idx].m = '';
-        rows[idx].message = '';
-        rows[idx].note = '';
-        rows[idx].save();
-    } else if (idx >= 0 && rows[idx].day!='Tmp'){
-        speech(config.ip_address, config.language, rows[idx].message);
-    }
+    let idx = rows.findIndex(row => ((row.day == day[now.getDay()] || row.day == wkday[now.getDay()] || row.day == 'All') && row.h == now.getHours() && row.m == now.getMinutes()) || row.day == 'Tmp');
+    if (idx >= 0) speech(config.ip_address, config.language, rows[idx].message);
+    if (idx >= 0 && rows[idx].day=='Tmp') rows[idx].delete();
 }
 
 function speech(host, lang, text) {
