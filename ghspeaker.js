@@ -22,7 +22,7 @@ async function main() {
 
     let idx = rows.findIndex(row => ((row.day == day[now.getDay()] || row.day == wkday[now.getDay()] || row.day == 'All') && row.h == now.getHours() && row.m == now.getMinutes()) || row.day == 'Tmp');
     if (idx >= 0) speech(config.ip_address, config.language, rows[idx].message);
-    if (idx >= 0 && rows[idx].day=='Tmp') rows[idx].delete();
+    if (idx >= 0 && rows[idx].day == 'Tmp') rows[idx].delete();
 }
 
 function speech(host, lang, text) {
